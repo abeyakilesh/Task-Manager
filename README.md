@@ -4,7 +4,10 @@ A simple and clean **Task Manager application** built using **HTML, CSS, and Van
 This project focuses on core front-end fundamentals such as state management, DOM manipulation, and clean code structure — without the use of heavy frameworks.
 
 ---
+# Image
 
+<img width="1785" height="800" alt="task-manager-preview" src="https://github.com/user-attachments/assets/143c4341-d339-4cc8-a333-553fc9ec225c" />
+---
 ## Features
 
 - **Add tasks**: Quickly add new items to your list.
@@ -63,6 +66,5 @@ Simply double-click index.html to open it in your default browser.
 Alternative: Use Live Server in VS Code.
 
 ---
-## Screenshot
 
-![Task Manager Screenshot](assets/task-manager-preview.png)
+
