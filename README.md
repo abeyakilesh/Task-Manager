@@ -61,3 +61,10 @@ Open the application:
 Simply double-click index.html to open it in your default browser.
 
 Alternative: Use Live Server in VS Code.
+
+---
+
+## Screenshot
+
+![Task Manager Screenshot](assets/task-manager-preview.png)
+
