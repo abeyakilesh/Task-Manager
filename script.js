@@ -3,58 +3,65 @@ let tasks = [];
 const taskInput = document.getElementById("taskInput");
 const addBtn = document.getElementById("addBtn");
 const taskList = document.getElementById("taskList");
+const emptyState = document.getElementById("emptyState");
 
 addBtn.addEventListener("click", addTask);
+taskInput.addEventListener("keydown", e => {
+  if (e.key === "Enter") addTask();
+});
 
-function addTask() 
-{
+function addTask() {
   const text = taskInput.value.trim();
   if (!text) return;
 
-  const newTask = 
-  {
+  const task = {
     id: Date.now(),
     text,
     completed: false
   };
 
-  tasks = [...tasks, newTask];
+  tasks = [...tasks, task];
   taskInput.value = "";
-  renderTasks();
+  render();
 }
 
-function toggleTask(id) 
-{
+function toggleTask(id) {
   tasks = tasks.map(task =>
     task.id === id
       ? { ...task, completed: !task.completed }
       : task
   );
-  renderTasks();
+  render();
 }
 
-function deleteTask(id) 
-{
+function deleteTask(id) {
   tasks = tasks.filter(task => task.id !== id);
-  renderTasks();
+  render();
 }
 
-function renderTasks() {
+function render() {
   taskList.innerHTML = "";
+
+  emptyState.style.display = tasks.length === 0 ? "block" : "none";
 
   tasks.forEach(task => {
     const li = document.createElement("li");
 
-    li.innerHTML = `
-      <span class="${task.completed ? "completed" : ""}">
-        ${task.text}
-      </span>
-      <div>
-        <button onclick="toggleTask(${task.id})">✓</button>
-        <button onclick="deleteTask(${task.id})">✕</button>
-      </div>
-    `;
+    const span = document.createElement("span");
+    span.textContent = task.text;
+    span.className = `task-text ${task.completed ? "completed" : ""}`;
+    span.onclick = () => toggleTask(task.id);
 
+    const actions = document.createElement("div");
+    actions.className = "actions";
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "✕";
+    deleteBtn.onclick = () => deleteTask(task.id);
+
+    actions.appendChild(deleteBtn);
+    li.appendChild(span);
+    li.appendChild(actions);
     taskList.appendChild(li);
   });
 }
